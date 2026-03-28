@@ -1,0 +1,37 @@
+// Projeto: Controle de brilho de dois LEDs com PWM
+// Autor: Matheus Barbosa
+// Descrição: Este código faz dois LEDs variarem o brilho suavemente.
+// Primeiro aumenta o brilho do LED vermelho,
+// depois aumenta o do LED azul,
+// e por fim diminui o brilho de ambos juntos.
+
+int ledaz = 9;   // LED azul
+int ledvm = 10;  // LED vermelho
+int tempo = 40;  // tempo de delay (mais suave)
+
+void setup() {
+  pinMode(ledaz, OUTPUT);
+  pinMode(ledvm, OUTPUT);
+}
+
+void loop() {
+
+  // Aumenta brilho do LED vermelho
+  for(int x = 0; x <= 255; x++){
+    analogWrite(ledvm, x);
+    delay(tempo);
+  }
+
+  // Aumenta brilho do LED azul
+  for(int y = 0; y <= 255; y++){
+    analogWrite(ledaz, y);
+    delay(tempo);
+  }
+
+  // Diminui brilho dos dois LEDs juntos
+  for(int z = 255; z > 0; z--){
+    analogWrite(ledvm, z);
+    analogWrite(ledaz, z);
+    delay(tempo);
+  }
+}
